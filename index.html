@@ -10,27 +10,30 @@
     .box { border: 1px solid #ccc; padding: 1rem; margin: 1rem 0; }
     input[type=checkbox] { margin-right: .5rem; }
     .fine { font-size: .9rem; color: #333; }
+    .skip { margin-top: 0.75rem; }
   </style>
 </head>
 <body>
   <h1>Richard Brabec SMS</h1>
-  <p>This page is how people opt in to automated text messages from Richard Brabec, sent from (817) 552-4838.</p>
-  <p>Messages are transactional household reminders only. Not marketing. Frequency varies. Message and data rates may apply. Consent is not required to use any other service. Reply STOP to cancel. Reply HELP for help.</p>
+  <p>This page is how people may opt in to automated text messages from Richard Brabec, sent from (817) 552-4838.</p>
+  <p>Messages are transactional household reminders only. Not marketing. Frequency varies. Message and data rates may apply. Reply STOP to cancel. Reply HELP for help.</p>
+  <p><strong>SMS opt-in is optional.</strong> You can skip it and still use everything else. Consent is not required to create an account, complete a transaction, or use any other service. Checking the box is not bundled into the terms.</p>
   <p class="fine"><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms and conditions</a></p>
 
-  <form class="box" action="#" method="get" onsubmit="alert('This page is the public opt-in notice reviewers can verify. Live enrollment uses the same unchecked-by-default checkbox language.'); return false;">
+  <form class="box" action="#" method="get" onsubmit="if (!document.getElementById('consent').checked) { alert('No SMS opt-in. You can still use other services.'); return false; } alert('SMS opt-in recorded. This page is the public notice reviewers can verify.'); return false;">
     <p>
-      <label>Mobile number<br>
-        <input type="tel" name="mobile" required placeholder="10-digit US number" autocomplete="tel">
+      <label>Mobile number (optional unless you opt in to SMS)<br>
+        <input type="tel" name="mobile" placeholder="10-digit US number" autocomplete="tel">
       </label>
     </p>
     <p>
       <label>
-        <input type="checkbox" name="consent" required>
+        <input type="checkbox" name="consent" id="consent">
         I agree to receive recurring automated SMS from Richard Brabec at (817) 552-4838 about household reminders. Message frequency varies. Message and data rates may apply. Reply STOP to cancel, HELP for help. Consent is not a condition of purchase or of using other services.
       </label>
     </p>
-    <p><button type="submit">Opt in</button></p>
+    <p><button type="submit">Opt in to SMS</button></p>
+    <p class="skip"><button type="button" onclick="alert('Skipped. No SMS consent. You can still use other services.');">No thanks, skip SMS</button></p>
   </form>
 </body>
 </html>
